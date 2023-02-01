@@ -63,16 +63,27 @@ const styles = StyleSheet.create({
 
   form: {
     height: 549,
+    paddingTop: 92,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    marginTop: 160,
     backgroundColor: "#ffffff",
   },
   input: {
     borderWidth: 1,
-    borderColor: "#f0f8ff",
+    backgroundColor: "#f6f6f6",
+    borderColor: "#e8e8e8",
     height: 50,
     marginHorizontal: 16,
+    padding: 16,
+    marginBottom: 16,
+    borderRadius: 8,
   },
-  inputTitle: {},
+  inputTitle: {
+    // fontWeight: 500,
+    fontSize: 30,
+    // text: 1.16,
+    color: "#212121",
+    textAlign: "center",
+    marginBottom: 32,
+  },
 });
