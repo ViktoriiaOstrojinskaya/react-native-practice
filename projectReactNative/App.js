@@ -63,13 +63,16 @@ const styles = StyleSheet.create({
 
   form: {
     height: 549,
-    borderRadius: 25,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    marginTop: 160,
+    backgroundColor: "#ffffff",
   },
   input: {
     borderWidth: 1,
     borderColor: "#f0f8ff",
     height: 50,
-    borderRadius: 6,
+    marginHorizontal: 16,
   },
   inputTitle: {},
 });
