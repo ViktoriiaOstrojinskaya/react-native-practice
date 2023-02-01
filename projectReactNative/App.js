@@ -5,7 +5,7 @@ import {
   View,
   ImageBackground,
   TextInput,
-  Button,
+  TouchableOpacity,
 } from "react-native";
 
 export default function App() {
@@ -22,14 +22,24 @@ export default function App() {
         </Text>
         <View>
           <TextInput
-            style={styles.input}
+            style={[
+              styles.input,
+              {
+                marginBottom: 16,
+              },
+            ]}
             placeholder="Login"
             textAlign="left"
           ></TextInput>
         </View>
         <View>
           <TextInput
-            style={styles.input}
+            style={[
+              styles.input,
+              {
+                marginBottom: 16,
+              },
+            ]}
             placeholder="Email"
             textAlign="left"
           ></TextInput>
@@ -39,9 +49,15 @@ export default function App() {
             style={styles.input}
             placeholder="Password"
             textAlign="left"
+            secureTextEntry={true}
           ></TextInput>
         </View>
-        <Button title="Sing up" />
+        <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+          <Text style={styles.btnTitle}>Sing up</Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <Text style={styles.footerTitle}>Do you have account? Log in</Text>
       </View>
 
       <StatusBar style="auto" />
@@ -57,16 +73,16 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    justifyContent: "flex-end",
   },
 
   form: {
-    height: 549,
+    height: 449,
     paddingTop: 92,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#fff",
   },
   input: {
     borderWidth: 1,
@@ -75,7 +91,6 @@ const styles = StyleSheet.create({
     height: 50,
     marginHorizontal: 16,
     padding: 16,
-    marginBottom: 16,
     borderRadius: 8,
   },
   inputTitle: {
@@ -85,5 +100,25 @@ const styles = StyleSheet.create({
     color: "#212121",
     textAlign: "center",
     marginBottom: 32,
+  },
+  btn: {
+    backgroundColor: "#ff6c00",
+    height: 51,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 16,
+    padding: 16,
+    borderRadius: 100,
+    marginTop: 43,
+  },
+  btnTitle: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  footerTitle: {
+    marginBottom: 45,
+    fontSize: 16,
+    color: "#1B4371",
+    textAlign: "center",
   },
 });
