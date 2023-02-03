@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,73 +8,147 @@ import {
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Dimensions,
 } from "react-native";
+
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
+
+const initialState = {
+  login: "",
+  email: "",
+  password: "",
+};
+
+const loadApplication = async () => {
+  await Font.loadAsync({
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+  });
+};
 
 export default function App() {
   const [isShowPaddingForm, setIsShowPaddingForm] = useState(false);
+  const [state, setState] = useState(initialState);
+  const [isReady, setIsReady] = useState(false);
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 20 * 2
+  );
+
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 20 * 2;
+      setDimensions(width);
+    };
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  }, []);
+
+  const keyboardHide = () => {
+    setIsShowPaddingForm(false);
+    Keyboard.dismiss();
+    setState(initialState);
+  };
+
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={loadApplication}
+        onFinish={() => setIsReady(true)}
+        onError={console.warn}
+      />
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.image}
-        source={require("./assets/images/main-bg.png")}
-      ></ImageBackground>
-
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <View
-          style={{ ...styles.form, paddingBottom: isShowPaddingForm ? 20 : 45 }}
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.image}
+          source={require("./assets/images/main-bg.png")}
         >
-          <Text style={styles.inputTitle} textAlign="center">
-            Registration
-          </Text>
-          <View>
-            <TextInput
-              style={[
-                styles.input,
-                {
-                  marginBottom: 16,
-                },
-              ]}
-              placeholder="Login"
-              textAlign="left"
-              onFocus={() => setIsShowPaddingForm(true)}
-            ></TextInput>
-          </View>
-          <View>
-            <TextInput
-              style={[
-                styles.input,
-                {
-                  marginBottom: 16,
-                },
-              ]}
-              placeholder="Email"
-              textAlign="left"
-              onFocus={() => setIsShowPaddingForm(true)}
-            ></TextInput>
-          </View>
-          <View>
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              textAlign="left"
-              secureTextEntry={true}
-              onFocus={() => setIsShowPaddingForm(true)}
-            ></TextInput>
-          </View>
-          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
-            <Text style={styles.btnTitle}>Sing up</Text>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.footerTitle}>Do you have account? Log in</Text>
-        </View>
-      </KeyboardAvoidingView>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+            <View
+              style={{
+                ...styles.form,
+                paddingBottom: isShowPaddingForm ? 20 : 45,
+              }}
+            >
+              <Text style={styles.inputTitle} textAlign="center">
+                Registration
+              </Text>
 
-      <StatusBar style="auto" />
-    </View>
+              <View>
+                <TextInput
+                  style={{
+                    ...styles.input,
+                    marginBottom: 16,
+                    width: dimensions,
+                  }}
+                  placeholder="Login"
+                  textAlign="left"
+                  onFocus={() => setIsShowPaddingForm(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, login: value }))
+                  }
+                />
+              </View>
+
+              <View>
+                <TextInput
+                  style={{
+                    ...styles.input,
+                    marginBottom: 16,
+                    width: dimensions,
+                  }}
+                  placeholder="Email"
+                  textAlign="left"
+                  onFocus={() => setIsShowPaddingForm(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, email: value }))
+                  }
+                />
+              </View>
+
+              <View>
+                <TextInput
+                  style={{
+                    ...styles.input,
+                    marginBottom: 16,
+                    width: dimensions,
+                  }}
+                  placeholder="Password"
+                  textAlign="left"
+                  secureTextEntry={true}
+                  onFocus={() => setIsShowPaddingForm(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, password: value }))
+                  }
+                />
+              </View>
+
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={styles.btn}
+                onPress={keyboardHide}
+              >
+                <Text style={styles.btnTitle}>Sing up</Text>
+              </TouchableOpacity>
+
+              <Text style={styles.footerTitle}>
+                Do you have account? Log in
+              </Text>
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -87,9 +160,9 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    // alignItems: "center",
-    //justifyContent: "flex-end",
-    justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    // justifyContent: "center",
   },
 
   form: {
