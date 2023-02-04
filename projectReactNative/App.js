@@ -13,8 +13,8 @@ import {
   Dimensions,
 } from "react-native";
 
-import * as Font from "expo-font";
-import { AppLoading } from "expo";
+// import * as Font from "expo-font";
+// import { AppLoading } from "expo";
 
 const initialState = {
   login: "",
@@ -22,17 +22,18 @@ const initialState = {
   password: "",
 };
 
-const loadApplication = async () => {
-  await Font.loadAsync({
-    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
-    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-  });
-};
+// const loadApplication = async () => {
+//   await Font.loadAsync({
+//     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+//     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+//   });
+// };
 
 export default function App() {
   const [isShowPaddingForm, setIsShowPaddingForm] = useState(false);
   const [state, setState] = useState(initialState);
-  const [isReady, setIsReady] = useState(false);
+  // const [isReady, setIsReady] = useState(false);
+
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 20 * 2
   );
@@ -54,15 +55,15 @@ export default function App() {
     setState(initialState);
   };
 
-  if (!isReady) {
-    return (
-      <AppLoading
-        startAsync={loadApplication}
-        onFinish={() => setIsReady(true)}
-        onError={console.warn}
-      />
-    );
-  }
+  // if (!isReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadApplication}
+  //       onFinish={() => setIsReady(true)}
+  //       onError={console.warn}
+  //     />
+  //   );
+  // }
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
