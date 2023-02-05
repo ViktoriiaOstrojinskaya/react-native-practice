@@ -40,7 +40,7 @@ export default function App() {
 
   useEffect(() => {
     const onChange = () => {
-      const width = Dimensions.get("window").width - 20 * 2;
+      const width = Dimensions.get("window").width - 16 * 2;
       setDimensions(width);
     };
     Dimensions.addEventListener("change", onChange);
@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     color: "#212121",
     textAlign: "center",
     marginBottom: 32,
+    // fontFamily: "Roboto-Medium",
   },
   btn: {
     backgroundColor: "#ff6c00",
