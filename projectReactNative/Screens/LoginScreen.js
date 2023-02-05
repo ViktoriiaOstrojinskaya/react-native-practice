@@ -14,12 +14,11 @@ import {
 } from "react-native";
 
 const initialState = {
-  login: "",
   email: "",
   password: "",
 };
 
-export default function RegistrationScreen() {
+export default function LoginScreen() {
   const [isShowPaddingForm, setIsShowPaddingForm] = useState(false);
   const [state, setState] = useState(initialState);
   // const [isReady, setIsReady] = useState(false);
@@ -58,28 +57,12 @@ export default function RegistrationScreen() {
             <View
               style={{
                 ...styles.form,
-                paddingBottom: isShowPaddingForm ? 20 : 45,
+                paddingBottom: isShowPaddingForm ? 32 : 111,
               }}
             >
               <Text style={styles.inputTitle} textAlign="center">
-                Registration
+                Log in
               </Text>
-
-              <View>
-                <TextInput
-                  style={{
-                    ...styles.input,
-                    marginBottom: 16,
-                    width: dimensions,
-                  }}
-                  placeholder="Login"
-                  textAlign="left"
-                  onFocus={() => setIsShowPaddingForm(true)}
-                  onChangeText={(value) =>
-                    setState((prevState) => ({ ...prevState, login: value }))
-                  }
-                />
-              </View>
 
               <View>
                 <TextInput
@@ -119,11 +102,11 @@ export default function RegistrationScreen() {
                 style={styles.btn}
                 onPress={keyboardHide}
               >
-                <Text style={styles.btnTitle}>Sing up</Text>
+                <Text style={styles.btnTitle}>Log in</Text>
               </TouchableOpacity>
 
               <Text style={styles.footerTitle}>
-                Do you have account? Log in
+                You don`t have an account? Sing up
               </Text>
             </View>
           </KeyboardAvoidingView>
@@ -148,7 +131,7 @@ const styles = StyleSheet.create({
 
   form: {
     // height: 449,
-    paddingTop: 92,
+    paddingTop: 32,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",

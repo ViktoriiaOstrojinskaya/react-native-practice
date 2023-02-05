@@ -1,5 +1,6 @@
 import React from "react";
 import RegistrationScreen from "./Screens/RegistrationScreen";
+// import LoginScreen from "./Screens/LoginScreen";
 
 // import * as Font from "expo-font";
 // import { AppLoading } from "expo";
@@ -26,6 +27,7 @@ export default function App() {
   return (
     <>
       <RegistrationScreen />
+      {/* <LoginScreen /> */}
     </>
   );
 }
