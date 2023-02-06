@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     color: "#212121",
     textAlign: "center",
     marginBottom: 32,
-    // fontFamily: "Roboto-Medium",
+    fontFamily: "Roboto-Medium",
   },
   btn: {
     backgroundColor: "#ff6c00",
