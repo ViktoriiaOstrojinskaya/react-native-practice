@@ -49,7 +49,7 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
-          source={require("../assets/images/main-bg.png")}
+          // source={require("/projectReactNative/assets/images/main-bg.png")}
         >
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}

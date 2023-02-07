@@ -3,13 +3,17 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RegistrationScreen from "./screens/auth/RegistrationScreen";
 import LoginScreen from "./screens/auth/LoginScreen";
-import Home from "./screens/mainScreens/Home";
 import PostsScreen from "./screens/mainScreens/PostsScreen";
 import CreatePostsScreen from "./screens/mainScreens/CreatePostsScreen";
 import ProfileScreen from "./screens/mainScreens/ProfileScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
+
+{
+  /* <Ionicons name="person-outline" size={24} color="black" />; */
+}
 
 export const useRoute = (isAuth) => {
   if (!isAuth) {
@@ -29,11 +33,34 @@ export const useRoute = (isAuth) => {
     );
   }
   return (
-    <MainTab.Navigator>
-      <MainTab.Screen name="Home" component={Home} />
-      <MainTab.Screen name="Posts" component={PostsScreen} />
-      <MainTab.Screen name="CreatePosts" component={CreatePostsScreen} />
-      <MainTab.Screen name="Profile" component={ProfileScreen} />
+    <MainTab.Navigator tabBarOptions={{ showLabel: false }}>
+      <MainTab.Screen
+        options={{
+          tabBarIcon: ({ focused, size, color }) => (
+            <Ionicons name="albums-outline" size={size} color={color} />
+          ),
+        }}
+        name="Posts"
+        component={PostsScreen}
+      />
+      <MainTab.Screen
+        options={{
+          tabBarIcon: ({ focused, size, color }) => (
+            <Ionicons name="add" size={35} color={color} />
+          ),
+        }}
+        name="CreatePosts"
+        component={CreatePostsScreen}
+      />
+      <MainTab.Screen
+        options={{
+          tabBarIcon: ({ focused, size, color }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
+          ),
+        }}
+        name="Profile"
+        component={ProfileScreen}
+      />
     </MainTab.Navigator>
   );
 };
