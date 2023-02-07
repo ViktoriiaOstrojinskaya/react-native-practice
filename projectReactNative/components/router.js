@@ -1,9 +1,17 @@
 import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import RegistrationScreen from "./screens/auth/RegistrationScreen";
+import LoginScreen from "./screens/auth/LoginScreen";
+import Home from "./screens/mainScreens/Home";
+import PostsScreen from "./screens/mainScreens/PostsScreen";
+import CreatePostsScreen from "./screens/mainScreens/CreatePostsScreen";
+import ProfileScreen from "./screens/mainScreens/ProfileScreen";
 
 const Stack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
-const useRoute = (isAuth) => {
+export const useRoute = (isAuth) => {
   if (!isAuth) {
     return (
       <Stack.Navigator>
