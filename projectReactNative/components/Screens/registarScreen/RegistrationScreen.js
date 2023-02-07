@@ -11,6 +11,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Dimensions,
+  Button,
 } from "react-native";
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
   password: "",
 };
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ navigation }) {
   const [isShowPaddingForm, setIsShowPaddingForm] = useState(false);
   const [state, setState] = useState(initialState);
   // const [isReady, setIsReady] = useState(false);
@@ -122,9 +123,14 @@ export default function RegistrationScreen() {
                 <Text style={styles.btnTitle}>Sing up</Text>
               </TouchableOpacity>
 
-              <Text style={styles.footerTitle}>
-                Do you have account? Log in
-              </Text>
+              <TouchableOpacity
+                style={styles.footer}
+                onPress={() => navigation.navigate("login")}
+              >
+                <Text style={styles.footerTitle}>
+                  Do you have account? Log in
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -185,10 +191,12 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
   },
-  footerTitle: {
+  footer: {
     marginTop: 16,
-    fontSize: 16,
+  },
+  footerTitle: {
     color: "#1B4371",
+    fontSize: 16,
     textAlign: "center",
   },
 });

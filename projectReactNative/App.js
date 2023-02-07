@@ -1,8 +1,13 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import RegistrationScreen from "./Screens/RegistrationScreen";
-import LoginScreen from "./Screens/LoginScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import RegistrationScreen from "./components/Screens/registarScreen/RegistrationScreen";
+import LoginScreen from "./components/Screens/registarScreen/LoginScreen";
+import Home from "./components/Screens/mainScreens/Home";
+import PostsScreen from "./components/Screens/mainScreens/PostsScreen";
+import CreatePostsScreen from "./components/Screens/mainScreens/CreatePostsScreen";
+import ProfileScreen from "./components/Screens/mainScreens/ProfileScreen";
 
 // import * as Font from "expo-font";
 // import { AppLoading } from "expo";
@@ -13,8 +18,6 @@ import LoginScreen from "./Screens/LoginScreen";
 //     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
 //   });
 // };
-
-const Stack = createStackNavigator();
 
 export default function App() {
   // const [isReady, setIsReady] = useState(false);
@@ -29,12 +32,7 @@ export default function App() {
   //   );
   // }
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name="registration" component={RegistrationScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  const routing = useRoute(null);
+
+  return <NavigationContainer>{routing}</NavigationContainer>;
 }

@@ -11,6 +11,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Dimensions,
+  Button,
 } from "react-native";
 
 const initialState = {
@@ -18,7 +19,7 @@ const initialState = {
   password: "",
 };
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [isShowPaddingForm, setIsShowPaddingForm] = useState(false);
   const [state, setState] = useState(initialState);
   // const [isReady, setIsReady] = useState(false);
@@ -105,9 +106,14 @@ export default function LoginScreen() {
                 <Text style={styles.btnTitle}>Log in</Text>
               </TouchableOpacity>
 
-              <Text style={styles.footerTitle}>
-                You don`t have an account? Sing up
-              </Text>
+              <TouchableOpacity
+                style={styles.footer}
+                onPress={() => navigation.navigate("registration")}
+              >
+                <Text style={styles.footerTitle}>
+                  You don`t have an account? Sing up
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -152,7 +158,7 @@ const styles = StyleSheet.create({
     color: "#212121",
     textAlign: "center",
     marginBottom: 32,
-    fontFamily: "Roboto-Medium",
+    //fontFamily: "Roboto-Medium",
   },
   btn: {
     backgroundColor: "#ff6c00",
@@ -168,10 +174,12 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
   },
-  footerTitle: {
+  footer: {
     marginTop: 16,
-    fontSize: 16,
+  },
+  footerTitle: {
     color: "#1B4371",
+    fontSize: 16,
     textAlign: "center",
   },
 });
