@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+inport {Camera} from 'e'
 
 const CreatePostsScreen = () => {
   return (
