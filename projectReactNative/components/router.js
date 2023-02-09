@@ -37,7 +37,7 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           tabBarIcon: ({ focused, size, color }) => (
-            <Ionicons name="albums-outline" size={40} color={color} />
+            <Ionicons name="albums-outline" size={24} color={color} />
           ),
         }}
         name="Posts"
@@ -46,7 +46,7 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           tabBarIcon: ({ focused, size, color }) => (
-            <Ionicons name="add" size={40} color={color} />
+            <Ionicons name="add" size={24} color={color} />
           ),
         }}
         name="CreatePosts"
@@ -55,7 +55,7 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           tabBarIcon: ({ focused, size, color }) => (
-            <Ionicons name="person-outline" size={40} color={color} />
+            <Ionicons name="person-outline" size={24} color={color} />
           ),
         }}
         name="Profile"

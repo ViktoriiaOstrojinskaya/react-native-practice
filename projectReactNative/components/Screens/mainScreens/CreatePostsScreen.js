@@ -1,17 +1,36 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Camera } from "expo-camera";
 import { Ionicons } from "@expo/vector-icons";
 // <Ionicons name="camera-outline" size={24} color="black" />;
 
-const CreatePostsScreen = () => {
+const CreatePostsScreen = ({ navigation }) => {
+  const [camera, setCamera] = useState(null);
+  const [photo, setPhoto] = useState(null);
+
+  const takePhoto = async () => {
+    const photo = await camera.takePictureAsync();
+    setPhoto(photo.uri);
+    console.log(photo);
+  };
+
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera}>
-        <TouchableOpacity style={styles.iconContainer} onPress={() => {}}>
+      <Camera style={styles.camera} ref={setCamera}>
+        {photo && (
+          <View syle={styles.takePhotoContainer}>
+            <Image source={{ uri: photo }} style={{ height: 50, width: 50 }} />
+          </View>
+        )}
+        <TouchableOpacity style={styles.iconContainer} onPress={takePhoto}>
           <Ionicons name="ios-camera" size={24} color="#BDBDBD" />
         </TouchableOpacity>
       </Camera>
+      <View>
+        <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+          <Text style={styles.btnTitle}>Publish</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -40,6 +59,27 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
+  },
+  takePhotoContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    borderColor: "#fff",
+    borderWidth: 1,
+  },
+  btn: {
+    backgroundColor: "#f6f6f6",
+    height: 51,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 16,
+    padding: 16,
+    borderRadius: 100,
+    marginTop: 32,
+  },
+  btnTitle: {
+    color: "#BDBDBD",
+    fontSize: 16,
   },
 });
 
