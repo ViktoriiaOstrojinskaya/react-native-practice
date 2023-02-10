@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Camera } from "expo-camera";
 import { Ionicons } from "@expo/vector-icons";
-// <Ionicons name="camera-outline" size={24} color="black" />;
 
 const CreatePostsScreen = ({ navigation }) => {
   const [camera, setCamera] = useState(null);
@@ -31,6 +30,12 @@ const CreatePostsScreen = ({ navigation }) => {
           <Text style={styles.btnTitle}>Publish</Text>
         </TouchableOpacity>
       </View>
+<View>
+   <TouchableOpacity activeOpacity={0.8}>
+        <Ionicons name="trash-outline" size={24} color="black" />
+        </TouchableOpacity>
+  
+</View>
     </View>
   );
 };
