@@ -13,6 +13,10 @@ const CreatePostsScreen = ({ navigation }) => {
     console.log(photo);
   };
 
+  const sendPublish = () => {
+    navigation.navigate("Posts", { photo });
+  };
+
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} ref={setCamera}>
@@ -26,16 +30,20 @@ const CreatePostsScreen = ({ navigation }) => {
         </TouchableOpacity>
       </Camera>
       <View>
-        <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={styles.btn}
+          onPress={sendPublish}
+        >
           <Text style={styles.btnTitle}>Publish</Text>
         </TouchableOpacity>
       </View>
-<View>
-   <TouchableOpacity activeOpacity={0.8}>
-        <Ionicons name="trash-outline" size={24} color="black" />
+
+      <View style={styles.iconTrash}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.iconBackground}>
+          <Ionicons name="trash-outline" size={24} color="#BDBDBD" />
         </TouchableOpacity>
-  
-</View>
+      </View>
     </View>
   );
 };
@@ -85,6 +93,19 @@ const styles = StyleSheet.create({
   btnTitle: {
     color: "#BDBDBD",
     fontSize: 16,
+  },
+  iconTrash: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 120,
+  },
+  iconBackground: {
+    backgroundColor: "#f6f6f6",
+    height: 40,
+    width: 70,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
