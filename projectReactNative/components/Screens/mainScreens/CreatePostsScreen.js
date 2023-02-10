@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from "react-native";
 import { Camera } from "expo-camera";
 import { Ionicons } from "@expo/vector-icons";
 
+const initialState = {
+  name: "",
+  location: null,
+};
+
 const CreatePostsScreen = ({ navigation }) => {
+  const [description, setDescription] = useState(initialState);
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState(null);
 
@@ -22,13 +35,34 @@ const CreatePostsScreen = ({ navigation }) => {
       <Camera style={styles.camera} ref={setCamera}>
         {photo && (
           <View syle={styles.takePhotoContainer}>
-            <Image source={{ uri: photo }} style={{ height: 50, width: 50 }} />
+            <Image source={{ uri: photo }} style={styles.takePhoto} />
           </View>
         )}
         <TouchableOpacity style={styles.iconContainer} onPress={takePhoto}>
           <Ionicons name="ios-camera" size={24} color="#BDBDBD" />
         </TouchableOpacity>
       </Camera>
+
+      <View style={{ ...styles.descriptionContainer, marginTop: 32 }}>
+        <TextInput
+          placeholder="Name..."
+          onChangeText={(value) =>
+            setDescription((prevState) => ({ ...prevState, name: value }))
+          }
+          style={styles.descriptionText}
+        />
+      </View>
+
+      <View style={{ ...styles.descriptionContainer, marginTop: 16 }}>
+        <TextInput
+          placeholder="Location..."
+          onChangeText={(value) =>
+            setDescription((prevState) => ({ ...prevState, location: value }))
+          }
+          style={styles.descriptionText}
+        />
+      </View>
+
       <View>
         <TouchableOpacity
           activeOpacity={0.8}
@@ -65,6 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   iconContainer: {
+    position: "absolute",
     borderColor: "#fff",
     backgroundColor: "#fff",
     width: 60,
@@ -77,8 +112,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 0,
-    borderColor: "#fff",
-    borderWidth: 1,
+  },
+  takePhoto: {
+    flex: 1,
+    height: 240,
+    width: 343,
+    borderColor: "red",
+    borderWidth: 2,
+    borderRadius: 8,
   },
   btn: {
     backgroundColor: "#f6f6f6",
@@ -106,6 +147,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
+  },
+  descriptionContainer: {
+    borderBottomColor: "#E8E8E8",
+    borderBottomWidth: 1,
+    marginHorizontal: 16,
+  },
+  descriptionText: {
+    height: 50,
   },
 });
 
