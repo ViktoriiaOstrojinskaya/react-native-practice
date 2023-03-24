@@ -34,7 +34,7 @@ export default function LoginScreen({ navigation }) {
     };
     Dimensions.addEventListener("change", onChange);
     return () => {
-      Dimensions.removeEventListener("change", onChange);
+    Dimensions.removeEventListener("change", onChange);
     };
   }, []);
 
@@ -49,7 +49,7 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
-          // source={require("/projectReactNative/assets/images/main-bg.png")}
+          source={require("../../../assets/images/main-bg.png")}
         >
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -57,7 +57,7 @@ export default function LoginScreen({ navigation }) {
             <View
               style={{
                 ...styles.form,
-                paddingBottom: isShowPaddingForm ? 32 : 111,
+                marginBottom: isShowPaddingForm ? 30 : 10,
               }}
             >
               <Text style={styles.inputTitle} textAlign="center">
@@ -135,7 +135,9 @@ const styles = StyleSheet.create({
   },
 
   form: {
-    // height: 449,
+  //  height: 489,
+   width: 375,
+    marginTop: 323,
     paddingTop: 32,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
     color: "#212121",
     textAlign: "center",
     marginBottom: 32,
-    //fontFamily: "Roboto-Medium",
+    //ontFamily: "Roboto-Medium",
   },
   btn: {
     backgroundColor: "#ff6c00",

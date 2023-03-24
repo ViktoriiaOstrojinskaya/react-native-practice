@@ -1,6 +1,8 @@
 import React from "react";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import RegistrationScreen from "./screens/auth/RegistrationScreen";
 import LoginScreen from "./screens/auth/LoginScreen";
 import PostsScreen from "./screens/mainScreens/PostsScreen";
@@ -10,10 +12,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
-
-{
-  /* <Ionicons name="person-outline" size={24} color="black" />; */
-}
 
 export const useRoute = (isAuth) => {
   if (!isAuth) {
@@ -33,7 +31,7 @@ export const useRoute = (isAuth) => {
     );
   }
   return (
-    <MainTab.Navigator tabBarOptions={{ showLabel: false }}>
+    <MainTab.Navigator>
       <MainTab.Screen
         options={{
           tabBarIcon: ({ focused, size, color }) => (

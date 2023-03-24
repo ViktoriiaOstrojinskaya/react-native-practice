@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   iconTrash: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 120,
+    marginTop: 10,
   },
   iconBackground: {
     backgroundColor: "#f6f6f6",

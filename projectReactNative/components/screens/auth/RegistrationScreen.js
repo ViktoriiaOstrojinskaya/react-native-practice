@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  useWindowDimensions,
   Dimensions,
 } from "react-native";
 
@@ -25,7 +26,7 @@ export default function RegistrationScreen({ navigation }) {
   // const [isReady, setIsReady] = useState(false);
 
   const [dimensions, setDimensions] = useState(
-    Dimensions.get("window").width - 20 * 2
+    useWindowDimensions.get("window").width - 20 * 2
   );
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function RegistrationScreen({ navigation }) {
     };
     Dimensions.addEventListener("change", onChange);
     return () => {
-      Dimensions.removeEventListener("change", onChange);
+    Dimensions.removeEventListener("change", onChange);
     };
   }, []);
 
@@ -50,7 +51,7 @@ export default function RegistrationScreen({ navigation }) {
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
-          // source={require("/projectReactNative/assets/images/main-bg.png")}
+          source={require("../../../assets/images/main-bg.png")}
         >
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}

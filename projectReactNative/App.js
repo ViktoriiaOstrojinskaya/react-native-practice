@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useRoute } from "./components/router";
 
@@ -14,7 +14,7 @@ import { useRoute } from "./components/router";
 
 export default function App() {
   // const [isReady, setIsReady] = useState(false);
-
+  
   // if (!isReady) {
   //   return (
   //     <AppLoading
@@ -24,8 +24,8 @@ export default function App() {
   //     />
   //   );
   // }
-
-  const routing = useRoute({});
+  const routing = useRoute(false);
+  
 
   return <NavigationContainer>{routing}</NavigationContainer>;
 }
